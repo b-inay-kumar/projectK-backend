@@ -1,11 +1,29 @@
-// import express from "express";
-// import { requestForContact } from "../controller/ContactController";
-const express = require('express')
-const { requestForContact,viewContact } = require('../controller/ContactController');
+// routes/index.js
+
+const express = require("express");
+const {
+  requestForContact,
+  viewContact,
+} = require("../controller/ContactController");
+const {
+  createMeeting,
+  getAllMeetings,
+  updateMeeting,
+  patchMeeting,
+  deleteMeeting,
+} = require("../controller/meetingController");
 
 const router = express.Router();
 
-router.post("/contact", requestForContact); 
+// Contact routes
+router.post("/contact", requestForContact);
 router.get("/contact", viewContact);
 
-module.exports = router
+// Meeting routes
+router.post("/meetings", createMeeting);
+router.get("/meetings", getAllMeetings);
+router.put("/meetings/:id", updateMeeting);
+router.patch("/meetings/:id", patchMeeting);
+router.delete("/meetings/:id", deleteMeeting);
+
+module.exports = router;
